@@ -63,6 +63,19 @@ class HashBucketItem
      return m_next;
    }
 
+   //************************************
+   // Method:    setNext
+   // FullName:  HashBucketItem<K, V>::setNext
+   // Access:    public 
+   // Returns:   void
+   // Qualifier:
+   // Parameter: HashBucketItem * next
+   //************************************
+   void
+   setNext(HashBucketItem* next)
+   {
+     m_next = next;
+   }
  
 
  private:
