@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "HashTableMap.h"
+#include "kraRNG.h"
 
 #pragma region Utility_functions
 
@@ -82,6 +83,7 @@ int multiplicativeHashFunc(int key, int tableSize)
 
 int main()
 {
+  kraRandom r;
   srand((unsigned)time(NULL));
   
   const int tableSize = 67;
