@@ -68,16 +68,98 @@ Tree::search(int key) {
 }
 
 void
+Tree::deleteDeepest(Node* node) {
+
+  std::queue<Node*> nodeQueue;
+  nodeQueue.push(m_rootNode);
+
+  Node* tempNode = nullptr;
+  
+  while (!nodeQueue.empty()) {
+    
+    tempNode = nodeQueue.front();
+    nodeQueue.pop();
+
+    if (tempNode == node) {
+      tempNode == nullptr;
+      delete(node);
+      return;
+    }
+    if (tempNode->getRight() != nullptr) {
+      if (tempNode->getRight() == node) {
+        tempNode->setRight(nullptr);
+        delete(node);
+        return;
+      }
+      else {
+        nodeQueue.push(tempNode->getRight());
+      }
+    }
+    if (tempNode->getLeft() != nullptr) {
+      if (tempNode->getLeft() == node) {
+        tempNode->setLeft(nullptr);
+        delete(node);
+        return;
+      }
+      else {
+        nodeQueue.push(tempNode->getLeft());
+      }
+    }
+  }
+
+
+}
+
+void
 Tree::deleteNode(int key) {
   
   Node* currentNode = search(key);
+  if (currentNode == nullptr) {
+    std::cout << "Couldn't find node with key: " << key << "\n";
+    return;
+  }
 
   if (currentNode->getLeft() == nullptr && currentNode->getRight() == nullptr) {
-    delete currentNode;
+    
+    currentNode = nullptr;
   }
-  else if (currentNode->getRight() == nullptr) {
+  else if (currentNode->getLeft() != nullptr && currentNode->getRight() == nullptr 
+    || currentNode->getLeft() == nullptr && currentNode->getRight() != nullptr) {
+    
+    currentNode = nullptr;
+  }
+  else if (currentNode->getLeft() != nullptr && currentNode->getRight() != nullptr) {
 
-  }  
+  }
+
+  std::queue<Node*> nodeQueue;
+  nodeQueue.push(m_rootNode);
+
+  Node* tempNode = nullptr;
+  Node* succNode = nullptr;
+
+  while (!nodeQueue.empty()) {
+    tempNode = nodeQueue.front();
+    nodeQueue.pop();
+
+    if (tempNode->getKey() == key) {
+      succNode = tempNode;
+    }
+    if (tempNode->getLeft() != nullptr) {
+      nodeQueue.push(tempNode->getLeft());
+    }
+    if (tempNode->getRight() != nullptr)
+    {
+      nodeQueue.push(tempNode->getRight());
+    }
+  }
+
+  if (succNode != nullptr) {
+    int newKey = tempNode->getKey();
+    deleteDeepest(tempNode);
+    succNode->setKey(newKey);
+  }
+   
 }
 
 Node*

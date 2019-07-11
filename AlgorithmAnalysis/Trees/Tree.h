@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <queue>
 
 #include "Node.h"
 
@@ -17,6 +18,9 @@ class Tree {
 
    Node*
    search(int key);
+   
+   void
+   deleteDeepest(Node* node);
 
    void 
    deleteNode(int key);
