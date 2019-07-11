@@ -21,6 +21,9 @@ class Tree {
    void 
    deleteNode(int key);
 
+   Node*
+   minValueNode(Node* node);
+
    void
    preOrder();
    

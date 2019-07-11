@@ -32,7 +32,7 @@ class Node {
  private:
 
    int m_key;
-   Node* m_left;
-   Node* m_right;
-   Node* m_parent;
+   Node* m_left = nullptr;
+   Node* m_right = nullptr;
+   Node* m_parent = nullptr;
 };

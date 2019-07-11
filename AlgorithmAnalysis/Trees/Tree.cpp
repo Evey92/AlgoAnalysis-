@@ -69,12 +69,28 @@ Tree::search(int key) {
 
 void
 Tree::deleteNode(int key) {
+  
+  Node* currentNode = search(key);
 
-  if (m_rootNode == nullptr) {
-  
+  if (currentNode->getLeft() == nullptr && currentNode->getRight() == nullptr) {
+    delete currentNode;
   }
+  else if (currentNode->getRight() == nullptr) {
+
+  }  
+}
+
+Node*
+minValueNode(Node* node) {
   
-  
+  Node* currentNode = node;
+
+  while (currentNode && currentNode->getLeft() != nullptr)
+  {
+    currentNode = currentNode->getLeft();
+  }
+
+  return currentNode;
 }
 
 void
