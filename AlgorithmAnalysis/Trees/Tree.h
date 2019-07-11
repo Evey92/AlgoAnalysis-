@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Node.h"
 
 class Tree {
@@ -8,6 +10,9 @@ class Tree {
 
    void 
    insert(int key, Node* node);
+
+   void
+   insert(int key);
 
    Node*
    search(int key);
@@ -22,7 +27,7 @@ class Tree {
    postOrder();
  
    void
-   Destroy();
+   Destroy(int key);
 
  private:
 

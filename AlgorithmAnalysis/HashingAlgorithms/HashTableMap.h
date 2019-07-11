@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <functional>
+#include <fstream>
+
 #include "HashBucket.h"
 
 
@@ -142,6 +144,9 @@ class HashTableMap
   void
   showTable()
   {
+    std::ofstream myFile("Data.txt");
+
+
     HashBucketItem<K, V>* prev = nullptr;
     int buckets[tableSize];
     int count = 0;
@@ -163,14 +168,18 @@ class HashTableMap
       totalItems += count;
       count = 0;
     }
-
+    
     for (int i = 0; i < tableSize; ++i)
     {
       std::cout << "Items in bucket: " << i << ": " << buckets[i] << "\n";
+      if (myFile.is_open())
+      {
+        myFile << buckets[i] << "\n";
+      }
     }
 
     std::cout << "Total items: " << totalItems << "\n";
-
+    myFile.close();
 
   }
 
