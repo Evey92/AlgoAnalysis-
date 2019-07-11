@@ -23,9 +23,16 @@ class Node {
    Node*
    getRight();
 
+   void
+   setParent(Node* node);
+
+   Node*
+   getParent();
+
  private:
 
    int m_key;
    Node* m_left;
    Node* m_right;
+   Node* m_parent;
 };

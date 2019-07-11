@@ -15,7 +15,7 @@ Tree::insert(int key) {
     return;
   }
 
-  Node* prev;
+  Node* prev = nullptr;
   Node* entry = m_rootNode;
 
   while (entry != nullptr) {
@@ -30,9 +30,12 @@ Tree::insert(int key) {
   }
 
   if (key <= prev->getKey()) {
+    newNode->setParent(prev);
     prev->setLeft(newNode);
+
   }
   else {
+    newNode->setParent(prev);
     prev->setRight(newNode);
   }
 }
@@ -40,12 +43,38 @@ Tree::insert(int key) {
 Node*
 Tree::search(int key) {
 
-  if (m_rootNode == nullptr || key == m_rootNode->getKey()) {
+  if (m_rootNode == nullptr) {
+    return nullptr;
+  }
+  else if (key == m_rootNode->getKey()) {
     return m_rootNode;
   }
 
   Node* currentNode = m_rootNode;
 
+  while (currentNode != nullptr)
+  {
+    if (key > currentNode->getKey()) {
+      currentNode = currentNode->getRight();
+    }
+    else if (key < currentNode->getKey())
+    {
+      currentNode = currentNode->getLeft();
+    }
+    else {
+      return currentNode;
+    }
+  }
+}
+
+void
+Tree::deleteNode(int key) {
+
+  if (m_rootNode == nullptr) {
+  
+  }
+  
+  
 }
 
 void
@@ -87,6 +116,6 @@ Tree::postOrder() {
 }
 
 void
-Tree::Destroy(int key) {
+Tree::Destroy() {
 
 }

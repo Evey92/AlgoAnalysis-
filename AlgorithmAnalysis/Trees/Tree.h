@@ -18,6 +18,9 @@ class Tree {
    Node*
    search(int key);
 
+   void 
+   deleteNode(int key);
+
    void
    preOrder();
    
@@ -28,9 +31,9 @@ class Tree {
    postOrder();
  
    void
-   Destroy(int key);
+   Destroy();
 
  private:
 
-   Node* m_rootNode;
+   Node* m_rootNode = nullptr;
 };
