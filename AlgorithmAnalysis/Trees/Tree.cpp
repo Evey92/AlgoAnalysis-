@@ -16,8 +16,7 @@ Tree::insert(int key) {
   }
 
   Node* prev;
-  Node* entry;
-  entry = m_rootNode;
+  Node* entry = m_rootNode;
 
   while (entry != nullptr) {
     prev = entry;
@@ -41,14 +40,12 @@ Tree::insert(int key) {
 Node*
 Tree::search(int key) {
 
-  Node* entry = m_rootNode;
-
-  if (key == entry->getKey()) {
-    return entry;
+  if (m_rootNode == nullptr || key == m_rootNode->getKey()) {
+    return m_rootNode;
   }
-  else {
 
-  }
+  Node* currentNode = m_rootNode;
+
 }
 
 void
@@ -61,8 +58,27 @@ Tree::inOrder() {
 
   if (m_rootNode == nullptr) {
     std::cout << "The tree is empty: YEET. \n";
-
   }
+
+  std::stack<Node*> tempStack;
+  Node* currentNode = m_rootNode;
+
+  while (currentNode != nullptr || !tempStack.empty())
+  {
+    while (currentNode != nullptr)
+    {
+      tempStack.push(currentNode);
+      currentNode = currentNode->getLeft();
+    }
+
+    currentNode = tempStack.top();
+    tempStack.pop();
+
+    std::cout << currentNode->getKey() << ", ";
+
+    currentNode = currentNode->getRight();
+  }
+
 }
 
 void
